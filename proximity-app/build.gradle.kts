@@ -10,6 +10,7 @@ plugins {
 repositories { mavenCentral() }
 
 dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-web:4.0.0")
     implementation("org.springframework.boot:spring-boot-starter:4.0.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test:4.0.0")
     testImplementation(kotlin("test"))
@@ -29,4 +30,4 @@ tasks.test {
     useJUnitPlatform()
 }
 
-application { mainClass = "org.proximity.AppKt" }
+application { mainClass = "org.proximity.ApplicationKt" }
