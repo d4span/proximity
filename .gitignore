@@ -28,3 +28,6 @@ replay_pid*
 .project
 .classpath
 .settings/
+
+# Frontend files
+*/src/main/resources/frontend/generated

@@ -48,11 +48,11 @@
                 <configuration>
                     <npmFolder>${project.build.directory}</npmFolder>
                     <frontendDirectory>
-                        ${project.build.directory}/frontend
+                        ${project.basedir}/src/main/resources/frontend
                     </frontendDirectory>
-                    <generatedTsFolder>
+                    <!--<generatedTsFolder>
                         ${project.build.directory}/frontend/generated
-                    </generatedTsFolder>
+                    </generatedTsFolder> -->
                     <cleanFrontendFiles>true</cleanFrontendFiles>
                 </configuration>
             </plugin>

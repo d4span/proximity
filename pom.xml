@@ -17,7 +17,7 @@
   <properties>
     <maven.compiler.source>25</maven.compiler.source>
     <maven.compiler.target>25</maven.compiler.target>
-    <vaadin.version>24.9.5</vaadin.version>
+    <vaadin.version>24.9.7</vaadin.version>
     <spring-boot.version>3.5.8</spring-boot.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
