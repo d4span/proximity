@@ -6,32 +6,25 @@ Date: 2025-11-23
 
 ## Context
 
-- Project: interactive learning platform providing quizzes and assignments. Teachers/instructors can use built-in problem types and develop/integrate their own problem types via a plugin system.
-- Primary UI: web.
-- Runtime constraints: node-local in-memory session state acceptable; design point of up to ~5000 concurrent users per backend node; interactive latency up to ~1s acceptable.
-- Plugins: JVM-only, delivered as simple JARs with a descriptor; light sandboxing acceptable; runtime hot-load/unload desired.
-- Target Java version: Java 25. Spring is the preferred framework (stack—blocking vs reactive—undecided).
-- Persistence: relational database(s) with stronger consistency guarantees.
-- Prioritized criteria: 1) Scalability, 2) Plugin extensibility (runtime loading, classloader sandboxing), 3) Developer productivity/tooling.
+- This project is an interactive learning platform providing quizzes and assignments. Teachers/instructors can use built-in problem types or develop/integrate their own extensions via a plugin system. 
 
 ## Decision
 
 Choose Java (targeting Java 25) as the primary implementation platform, using Spring for application development, and adopt a simple JVM-JAR plugin model with classloader-based isolation and runtime loading.
 
-## Rationale (mapped to prioritized criteria)
+## Rationale
 
 - Scalability
   - The JVM ecosystem is mature and proven for production scalability. Java 25 benefits from ongoing runtime optimizations and GC improvements.
   - Spring provides established patterns for connection pooling, observability, load handling, and integration with cloud platforms (Kubernetes/VMs).
-  - With appropriate instance sizing and runtime tuning, a JVM-based backend can be optimized to handle the single-node target concurrency and throughput.
 
 - Plugin extensibility
-  - JVM classloader semantics enable runtime loading and unloading of JARs and offer per-plugin isolation without process-level IPC, matching the requirement for JVM-only plugins and light isolation.
+  - JVM classloader semantics enable runtime loading and unloading of JARs.
   - Java’s reflection and annotation ecosystems simplify plugin discovery and lifecycle integration.
-  - Existing JVM plugin frameworks (PF4J, OSGi) and Spring extension patterns provide proven approaches; the project can begin with a minimal custom classloader + registry and migrate to a framework if needed.
+  - Existing JVM plugin frameworks (PF4J, OSGi) and Spring extension patterns provide proven approaches, so the project can begin with a minimal approach and later switch to a more sophisticated one, if necessary.
 
 - Developer productivity / tooling
-  - Java + Spring have excellent IDE support, debugging and refactoring tools, and a rich ecosystem for web, persistence, security, and monitoring.
+  - Java + Spring have excellent IDE support, debugging and refactoring tools, and a rich ecosystem.
   - Packaging and dependency management (JARs, Maven/Gradle) are well-supported and simplify CI/CD.
 
 ## Comparison to considered alternatives (high-level)
